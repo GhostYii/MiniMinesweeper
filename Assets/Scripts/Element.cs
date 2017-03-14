@@ -98,6 +98,9 @@ public class Element : MonoBehaviour, IPointerClickHandler
     {
         if (!IsUncover) return;
 
+        GameManager.instance.StopAllCoroutines();
+        GameManager.instance.StartCoroutine(GameManager.instance.SetOutputText("Gam", "ing..."));
+
         if (eventData.button == PointerEventData.InputButton.Left)
         { ElementOnClickLeft(); }
         else

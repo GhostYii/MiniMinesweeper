@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     //public int width = Gird.width;
     //public int height = Gird.height;
 
-    public int mineSum = Gird.mineSum;    
+    public int mineSum = Gird.mineSum;
 
     public Text outputText;
     public InputField maxMineCountInputField;
@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
     public void GameWin()
     {
         faceImage.sprite = faceSprites[1];
+        Gird.DisenableAllElements();
+        foreach (var item in Gird.elements)
+            if (item.isMine) item.Selectable.image.sprite = item.uncoverSprites[1];
+        
         StopAllCoroutines();
         StartCoroutine(SetOutputText("", "YOU WIN!!"));
     }
@@ -64,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         SetMaxMineCount();
         Awake();
-        
+
         StopAllCoroutines();
         StartCoroutine(SetOutputText("Gam", "ing..."));
 
@@ -81,7 +85,7 @@ public class GameManager : MonoBehaviour
         Application.OpenURL("https://github.com/GhostYii");
     }
 
-    IEnumerator SetOutputText(string s1, string s2, float speed = 0.8f)
+    public IEnumerator SetOutputText(string s1, string s2, float speed = 0.8f)
     {
         int len1 = s1.Length;
         int len2 = s2.Length;
