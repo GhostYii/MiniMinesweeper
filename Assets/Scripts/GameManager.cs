@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     public void SetMaxMineCount()
     {
         int c = Convert.ToInt32(maxMineCountInputField.text);
-        if (c <= 0 || c > 256) c = 15;
+        if (c <= 0 || c > 255) c = 15;
 
         mineSum = c;
         Gird.CurrentMineIndexList.Clear();
